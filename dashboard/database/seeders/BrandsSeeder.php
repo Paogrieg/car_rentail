@@ -26,3 +26,4 @@ class BrandsSeeder extends Seeder
         $dato->save();
     }
 }
+
