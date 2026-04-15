@@ -19,3 +19,6 @@ Route::resource('/drivers', DriversController::class);
 Route::resource('/rentals', RentalsController::class);
 Route::resource('/payments', PaymentsController::class);
 Route::resource('/loyalty_levels', loyalty_levelsController::class);
+
+Route::post('/updateStatus/{id}', [CarsController::class, 'updateStatus']);
+Route::post('/uStatus/{id}', [RentalsController::class, 'uStatus']);

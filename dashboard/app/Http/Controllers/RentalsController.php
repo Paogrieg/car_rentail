@@ -131,4 +131,13 @@ class RentalsController extends Controller
             "message"=>"Registro eliminado correctamente"
         ],200);
     }
+    public function uStatus(Request $request, $id){
+        $rental = rental::findOrFail($id);
+        $rental->status = $request->status;
+        $rental->save();
+        return response()->json([
+            "data"=>$rental,
+            "status"=>"success"
+        ],200);
+    }
 }

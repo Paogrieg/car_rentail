@@ -150,5 +150,13 @@ class CarsController extends Controller
             "message"=>"Registro eliminado correctamente"
         ],200);
     }
-    
+    public function updateStatus(Request $request, $id){
+        $car = car::findOrFail($id);
+        $car->status = $request->status;
+        $car->save();
+        return response()->json([
+            "data"=>$car,
+            "status"=>"success"
+        ],200);
+    }
 }
