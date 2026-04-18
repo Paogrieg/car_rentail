@@ -22,3 +22,9 @@ Route::resource('/loyalty_levels', loyalty_levelsController::class);
 
 Route::post('/updateStatus/{id}', [CarsController::class, 'updateStatus']);
 Route::post('/uStatus/{id}', [RentalsController::class, 'uStatus']);
+Route::middleware('jwt')->group(function () {
+    Route::get('/user', [AuthController::class, 'getUser']);
+    Route::put('/user', [AuthController::class, 'updateUser']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
+
