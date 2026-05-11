@@ -19,6 +19,8 @@ class CarsSeeder extends Seeder
             'model' => 'Challenger',
             'year' => '2020',
             'color' => 'Negro',
+            'img' => 'challenger.jpg',
+            'price' =>'24.25',
             'license_plate' => 'ABC-1234',
             'mileage' => '15000',
             'lat' => '-34.6037',
@@ -34,6 +36,8 @@ class CarsSeeder extends Seeder
         $dato->model = 'Camaro';
         $dato->year = 2021;
         $dato->color = 'Blanco';
+        $dato->img = 'Camaro.jpg';
+        $dato->price = '60.50';
         $dato->license_plate = 'XYZ-5678';
         $dato->mileage = 10000;
         $dato->lat = '-34.6037';

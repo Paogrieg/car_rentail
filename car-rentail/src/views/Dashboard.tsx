@@ -5,14 +5,16 @@ import Siderbar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 import axios from "axios";
 import type Car  from "../interfaces/Car";
+import MapComponent from "../components/mapComponent";
 
 export default function Dashboard() {
     const [cars, setCars] = useState([]) 
+    const API_URL = import.meta.env.VITE_API_URL
     useEffect(()=>{
         getCars()
-    })
+    },[])
     const getCars = ()=>{
-        axios.get("http://localhost:8000/api/cars").then((Response:any)=>{
+        axios.get(`${API_URL}/cars`).then((Response:any)=>{
             console.log(Response.data.data);
             setCars(Response.data.data)
         }).catch((err:any)=>{
@@ -39,7 +41,7 @@ export default function Dashboard() {
                 <div className="vehicles-panel p-4 h-100 flex-shrink-0 position-relative">
                     <div className="d-flex justify-content-between align-items-center mb-4 sticky-top bg-light"
                         style={{top: '-1.5rem', paddingTop: '1.5rem', marginTop: '-1.5rem', zIndex: 10}}>
-                        <h4 className="fw-bold mb-0">48 vehicles to rent</h4>
+                        <h4 className="fw-bold mb-0">{cars.length} vehicles to rent</h4>
                         <div className="d-flex align-items-center gap-4 text-muted fs-sm">
                             <div className="fw-medium text-dark cursor-pointer d-flex align-items-center gap-2">
                                 Closest to me <i className="fa-solid fa-chevron-down"></i>
@@ -88,18 +90,10 @@ export default function Dashboard() {
                     </div>
 
                     {/* Mock map elements (route and pins) */}
-                    <svg className="position-absolute w-100 h-100 top-0 start-0 pointer-events-none z-0">
-                        {/* Simulated Route Line */}
-                        <path d="M 280 480 L 320 450 L 370 460 L 450 380 L 520 390 L 580 250 L 680 280 L 720 220"
-                            stroke="#1a1a1a" stroke-width="4" fill="none" stroke-linejoin="round"
-                            stroke-linecap="round" />
-                    </svg>
-
+                    <MapComponent/>
+                    {/*/npm install mapbox-gl -para utilizar el api de los mapas o esta npm install react-map-gl*/}
                     {/* Route start and end markers */}
-                    <div className="position-absolute bg-success rounded-circle border border-white border-2 z-1 shadow"
-                        style={{width: '14px', height: '14px', top: '473px', left: '273px'}}></div>
-                    <div className="position-absolute bg-dark rounded-circle border border-white border-2 z-1 shadow"
-                        style={{width: '18px', height: '18px', top: '211px', left: '711px'}}></div>
+                    
 
                     {/* Time indicator on route */}
                     <div className="position-absolute bg-white px-2 py-1 rounded-pill shadow-sm text-dark fs-xs fw-bold z-1 d-flex align-items-center gap-1 border"
@@ -108,10 +102,7 @@ export default function Dashboard() {
                     </div>
 
                     {/* Numbered dark pins */}
-                    <div className="map-pin-dark" style={{top: '25%', left: '20%'}}>2</div>
-                    <div className="map-pin-dark" style={{top: '75%', left: '35%'}}>3</div>
-                    <div className="map-pin-dark" style={{bottom: '10%', right: '20%'}}>5</div>
-                    <div className="map-pin-dark" style={{top: '20%', right: '10%'}}>6</div>
+
 
                     {/* Car icons on ma    p */}
                     <div className="position-absolute" style={{top: '520px', left: '280px', transform: 'rotate(15deg)'}}>

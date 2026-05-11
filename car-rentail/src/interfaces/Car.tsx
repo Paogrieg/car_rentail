@@ -1,6 +1,8 @@
 export default interface Car{
     brand_id:string,
     color:string,
+    img:string,
+    price:number,
     created_at:string,
     daily_rate:number,
     id:number,
